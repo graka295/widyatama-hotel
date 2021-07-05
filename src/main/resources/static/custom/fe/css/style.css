@@ -1,0 +1,191 @@
+.hovereffect {
+	width: 100%;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	cursor: default;
+}
+
+.hovereffect img {
+	display: block;
+	position: relative;
+	-webkit-transition: all .4s linear;
+	transition: all .4s linear;
+}
+
+.hovereffect:hover img {
+	-ms-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.logo_fe {
+	width: 150px;
+}
+
+.owl-carousel {
+	background: #212529 !important;
+	height: auto;
+}
+
+.owl-carousel .slider-item .slider-text .one-third {
+	width: 100% !important;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item.active>a {
+	color: #ffffff;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item>.nav-link {
+	color: #d2d2d247;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item.cta>a {
+	color: #ffffff;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item.cta>a:hover {
+	background-color: #ffffff;
+	color: #212529;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover {
+	color: #ffffff;
+}
+
+.ftco-navbar-light.scrolled .nav-item.active>a {
+	color: #212529 !important;
+}
+
+.ftco-navbar-light.scrolled .nav-item.cta>a {
+	color: #000000 !important;
+	background: transparent;
+	border: none !important;
+}
+
+.ftco-navbar-light {
+	background: transparent !important;
+	position: inherit;
+	background: #212529 !important;
+	z-index: 3;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu {
+	background: #212529;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item {
+	color: #d2d2d247;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item:hover {
+	color: #ffffff;
+}
+
+.ftco-navbar-light.scrolled .navbar-nav>.nav-item .dropdown-menu {
+	background: #ffffff;
+}
+
+.ftco-navbar-light.scrolled .navbar-nav>.nav-item .dropdown-menu .dropdown-item {
+	color: #212529;
+}
+
+.ftco-navbar-light .navbar-brand-2 {
+	display: none;
+}
+
+.ftco-navbar-light.scrolled .navbar-brand {
+	display: none;
+}
+
+.ftco-navbar-light.scrolled .navbar-brand-2 {
+	display: block;
+}
+
+.ftco-navbar-light.scrolled .nav-item.cta>a:hover {
+	color: #ffffff !important;
+	background: #212529 !important;
+	border: none !important;
+}
+
+.ftco-navbar-light.scrolled .nav-item.cta>a span {
+	color: unset !important
+}
+
+.product .text .cat span {
+	font-size: 12px;
+	text-transform: none;
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.form-box {
+	border-radius: 3px !important;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .active-nav {
+	color: #fff;
+}
+
+.img-full-width {
+	width: 100% !important;
+}
+
+.table .thead-primary {
+    background: #a4a8ac;
+}
+
+.btn.btn-primary {
+    background: #a4a8ac;
+    border: 1px solid #a4a8ac;
+    color: #fff;
+}
+.btn.btn-primary:hover {
+    background: #fff;
+    border: 1px solid #a4a8ac;
+    color: #a4a8ac;
+}
+.table tbody tr td.td-remove a {
+	background: #a4a8ac;
+	border: 1px solid #a4a8ac;
+    padding: 4px 10px;
+    color: #fff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+}
+.table tbody tr td.td-remove a:hover {
+	background: #fff;
+	border: 1px solid #a4a8ac;
+    padding: 4px 10px;
+    color: #a4a8ac;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+}
+.btn-big {
+    padding: 13px 20px;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.ftco-cart button, .ftco-cart .form-control {
+    height: 33px !important;
+}
+@media (max-width: 991.98px) {
+	.ftco-navbar-light .navbar-nav>.nav-item.cta>a {
+		color: #000000;
+		background: #ffffff;
+	}
+
+	.ftco-navbar-light.scrolled .navbar-nav>.nav-item.cta>a {
+		color: #ffffff !important;
+		background: #000000;
+	}
+}
