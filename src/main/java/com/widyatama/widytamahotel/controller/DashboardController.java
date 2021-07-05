@@ -3,6 +3,10 @@ package com.widyatama.widytamahotel.controller;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -39,14 +43,28 @@ public class DashboardController {
 	@RequestMapping(value= "/do-create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> DoCreate(@Valid @RequestBody ReqForm reqForm,Model model) {
 		ResForm res = new ResForm();
-//		Reservation name = reservationServices.ValidateName(reqForm.getName());
-//		if (name.getId() != 0) {
-//			res.setCode("400");
-//			List<String> messages = new ArrayList<>();
-//			messages.add("Name already exist");
-//			res.setMessage(messages);
-//			return ResponseEntity.badRequest().body(res);
-//		}
+		Reservation validateDate = reservationServices.ValidatDate(reqForm.getRoomId(),reqForm.getFromDate(),reqForm.getToDate(),reqForm.getFromDate(),reqForm.getToDate());
+		if (validateDate.getId() != 0) {
+			res.setCode("400");
+			List<String> messages = new ArrayList<>();
+			messages.add("Room already has been reserved, from "+new SimpleDateFormat("dd-MM-yyyy").format(validateDate.getFromDate())+" to "+new SimpleDateFormat("dd-MM-yyyy").format(validateDate.getToDate()));
+			res.setMessage(messages);
+			return ResponseEntity.badRequest().body(res);
+		}
+		Reservation data = reservationServices.Create(reqForm);
+		return ResponseEntity.ok().body(res);
+	}
+	@RequestMapping(value= "/do-update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> DUpdate(@Valid @RequestBody ReqForm reqForm,Model model) {
+		ResForm res = new ResForm();
+		Reservation validateDate = reservationServices.ValidatDate(reqForm.getRoomId(),reqForm.getFromDate(),reqForm.getToDate(),reqForm.getFromDate(),reqForm.getToDate());
+		if (validateDate.getId() != 0 && validateDate.getId() != reqForm.getId()) {
+			res.setCode("400");
+			List<String> messages = new ArrayList<>();
+			messages.add("Room already has been reserved, from "+new SimpleDateFormat("dd-MM-yyyy").format(validateDate.getFromDate())+" to "+new SimpleDateFormat("dd-MM-yyyy").format(validateDate.getToDate()));
+			res.setMessage(messages);
+			return ResponseEntity.badRequest().body(res);
+		}
 		Reservation data = reservationServices.Create(reqForm);
 		return ResponseEntity.ok().body(res);
 	}
