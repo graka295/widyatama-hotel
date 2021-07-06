@@ -99,4 +99,34 @@ public class ReservationDto {
 		private Date toDate;
 		private Double price;
 	}
+	public static class ReqFilter {
+		public Long getRoomId() {
+			return roomId;
+		}
+		public void setRoomId(Long roomId) {
+			this.roomId = roomId;
+		}
+		public Date getFromDate() {
+			return fromDate;
+		}
+		public void setFromDate(Date fromDate) {
+			this.fromDate = fromDate;
+		}
+		public Date getToDate() {
+			return toDate;
+		}
+		public void setToDate(Date toDate) {
+			this.toDate = toDate;
+		}
+		public Long getCategory() {
+			return category;
+		}
+		public void setCategory(Long category) {
+			this.category = category;
+		}
+		private Long roomId;
+		private Long category;
+		private Date fromDate;
+		private Date toDate;
+	}
 }

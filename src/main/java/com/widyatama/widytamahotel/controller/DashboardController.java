@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.widyatama.widytamahotel.dto.ReservationDto.ReqFilter;
 import com.widyatama.widytamahotel.dto.ReservationDto.ReqForm;
 import com.widyatama.widytamahotel.dto.ReservationDto.ResForm;
 import com.widyatama.widytamahotel.model.CategoryRoom;
 import com.widyatama.widytamahotel.model.Reservation;
-import com.widyatama.widytamahotel.model.Room;
 import com.widyatama.widytamahotel.services.CategoryServices;
 import com.widyatama.widytamahotel.services.ReservationServices;
 
@@ -40,9 +40,16 @@ public class DashboardController {
 	@GetMapping("")
 	public String Index(Model model,HttpSession session) {
 		String id = (String) session.getAttribute("id");
+		String firstname = (String) session.getAttribute("firstname");
 		if (id == null) {
 			return ("redirect:/auth/logout");
 		}
+		List<Reservation> data = reservationServices.FindAll();
+		List<CategoryRoom> category = categoryServices.FindAll();
+		model.addAttribute("category", category);
+		model.addAttribute("firstname", firstname);
+		model.addAttribute("id", id);
+		model.addAttribute("data", data);
 		return "dashboard/index";
 	}
 	
@@ -123,5 +130,20 @@ public class DashboardController {
 		model.addAttribute("id", id);
 		model.addAttribute("data", data);
 		return "dashboard/detail";
+	}
+	@RequestMapping(value= "/do-filter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> DoFilter(@Valid @RequestBody ReqFilter reqForm,Model model) {
+		List<Reservation> res = reservationServices.FindAllFilter(reqForm.getCategory(),reqForm.getRoomId(),reqForm.getFromDate(),reqForm.getToDate(),reqForm.getFromDate(),reqForm.getToDate());
+		return ResponseEntity.ok().body(res);
+	}
+	
+	@GetMapping("/delete")
+	public String Delete(Model model,HttpSession session,@RequestParam Integer idData) {
+		String id = (String) session.getAttribute("id");
+		if (id == null) {
+			return ("redirect:/auth/logout");
+		}
+		reservationServices.DeleteByID(idData);
+		return "redirect:/dashboard";
 	}
 }

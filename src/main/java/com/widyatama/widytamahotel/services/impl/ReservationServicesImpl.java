@@ -1,6 +1,7 @@
 package com.widyatama.widytamahotel.services.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,4 +78,27 @@ public class ReservationServicesImpl implements ReservationServices {
 		return res;
 	}
 
+	@Override
+	public List<Reservation> FindAll() {
+		List<Reservation> res = reservationRespository.findAll();
+		return res;
+	}
+
+	@Override
+	public List<Reservation> FindAllFilter(Long category,Long roomID, Date from, Date to, Date from2, Date to2) {
+		if (roomID != 0){
+			 Reservation res = new Reservation();
+			 Room resCategory = new Room();
+			 resCategory.setId(roomID);
+			 List<Reservation> reservation = reservationRespository.findAllFilter( resCategory,  from,  to,  from2,  to2);
+			 return reservation;
+		}else {
+			return reservationRespository.findAllFilterCategory(category,  from,  to,  from2,  to2);
+		}
+	}
+	
+	@Override
+	public void DeleteByID(Integer id) {
+		reservationRespository.deleteById(Long.valueOf(id));
+	}
 }
