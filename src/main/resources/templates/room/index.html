@@ -4,6 +4,80 @@
 
 <body>
     <div layout:fragment="content">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center header-table">
+                    <h4 class="page-title">MANAGE ROOM</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Room</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="ecommerce-widget">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-right">
+                                    <a href="/room/create" class="btn btn-secondary">CREATE</a>
+                                </div>
+                            </div>
+                            <div class="card-body order-datatable">
+                                <table id="dataTable" class="dataTable table table-striped table-bordered"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="data : ${data}">
+                                            <td th:text="${data.name}"></td>
+                                            <td th:text="${data.category.name}"></td>
+                                            <td>
+                                                <div class="text-center">
+                                                    <div class="btn-group">
+                                                        <a th:href="@{'room/detail?idData='+${data.id}}"
+                                                            class="editor_edit btn btn-success"><i
+                                                                class="fa fa-eye text-white"></i></a>
+                                                        <a th:href="@{'room/update?idData='+${data.id}}"
+                                                            class="editor_edit btn btn-warning"><i
+                                                                class="fa fa-edit text-white"></i></a>
+                                                        <div th:onclick="|onDelete('${data.id}')|"
+                                                            class="editor_edit btn btn-danger"><i
+                                                                class="fa fa-trash text-white"></i></div>
+                                                    </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var grid;
+            $(document).ready(function () {
+                grid = $('#dataTable').DataTable({
+                    columnDefs: [{ orderable: false, targets: [2] },]
+                });
+            })
+            function onDelete(id) {
+                deleteData('room/delete?idData='+id)
+            }
+        </script>
     </div>
 </body>
 

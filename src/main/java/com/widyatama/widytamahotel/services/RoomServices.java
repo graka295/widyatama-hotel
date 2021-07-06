@@ -10,4 +10,5 @@ public interface RoomServices {
 	public Room Create(ReqForm data);
 	public Room ValidateName(String name);
 	public Room FindByID(Integer id);
+	public void DeleteByID(Integer id);
 }

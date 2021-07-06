@@ -64,4 +64,9 @@ public class RoomServicesImpl implements RoomServices{
 		return res;
 	}
 
+	@Override
+	public void DeleteByID(Integer id) {
+		roomRespository.deleteById(Long.valueOf(id));
+	}
+
 }

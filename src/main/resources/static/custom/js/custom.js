@@ -66,7 +66,7 @@ validate = (data, url, form = "form") => {
 		},
 		error: function (e) {
 			console.log(e)
-			if (e.status == 400 && e.responseJSON.code == "400"){
+			if (e.status == 400 && e.responseJSON.code == "400") {
 				e.responseJSON.message.map(function (ex) {
 					swal.close();
 					iziToast.warning({
@@ -75,7 +75,7 @@ validate = (data, url, form = "form") => {
 						position: 'topRight'
 					});
 				})
-			}else{
+			} else {
 				swal.close();
 				iziToast.error({
 					title: 'Warning',
@@ -114,63 +114,17 @@ $.validator.addMethod("numeric", function (value, element) {
 	return this.optional(element) || /^[0-9]+$/.test(value)
 }, "Only number allowed.");
 
-function deleteData(checkbox, url) {
-	var val = checkbox.is(':checked')
-	console.log(val);
+function deleteData(url) {
 	Swal.fire({
-		title: "Are you sure change data ?",
+		title: "Are you sure delete data ?",
 		showCancelButton: true,
 	}).then((result) => {
 		if (result.isConfirmed) {
-			var data = {
-				"id": checkbox.attr("data-id"),
-				"val": val,
-			}
-			$.ajax({
-				data: data,
-				url: url,
-				type: "POST",
-				dataType: 'json',
-				success: function (e) {
-					if (!e.success) {
-						checkbox.bootstrapToggle('toggle')
-						swal.close();
-						e.message.map(function (ex) {
-							iziToast.warning({
-								title: 'Info',
-								message: ex,
-								position: 'topRight'
-							});
-						})
-					} else {
-						swal.close();
-						iziToast.success({
-							title: 'Success',
-							message: "Data already change",
-							position: 'topRight'
-						});
-					}
-				},
-				beforeSend: function () {
-					showLoading();
-				},
-				error: function (e) {
-					console.log(e)
-					checkbox.bootstrapToggle('toggle')
-					swal.close();
-					iziToast.error({
-						title: 'Warning',
-						message: "Bad Request",
-						position: 'topRight'
-					});
-				}
-			});
-		} else {
-			checkbox.bootstrapToggle('toggle')
+			window.location.replace(url);
 		}
 	})
 }
 
-function thousandSeparators(x){
-	return "Rp. "+x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+function thousandSeparators(x) {
+	return "Rp. " + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
