@@ -132,6 +132,13 @@ public class RoomController {
 		return ResponseEntity.ok().body(res);
 	}
 	
+	@GetMapping("/get-by-category")
+	public ResponseEntity<?> GetByCategory(Model model,HttpSession session,@RequestParam Integer idCategory) {
+		List<Room> data = roomServices.findByCategory(idCategory);
+		return ResponseEntity.ok().body(data);
+	}
+	
+	
 	@GetMapping("/delete")
 	public String Delete(Model model,HttpSession session,@RequestParam Integer idData) {
 		String id = (String) session.getAttribute("id");

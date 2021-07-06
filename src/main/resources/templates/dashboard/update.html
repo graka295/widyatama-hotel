@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeLeaf/Layout"
+    xmlns:th="http://www.ultraq.net.nz/thymeLeaf.org" layout:decorate="~{shared/main_layout.html}">
+
+<body>
+    <div layout:fragment="content">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center header-table">
+                    <h4 class="page-title">MANAGE RESERVATION</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Update</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="ecommerce-widget">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-right">
+                                    <b>UPDATE</b>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <form class="form-horizontal" id="form-update">
+                                    <input type="hidden" id="id" name="id" th:value="${data.id}">
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Category</label>
+                                            <div class="">
+                                                <select class="form-control frm select2" id="category" name="category">
+                                                    <option></option>
+                                                    <option th:each="category : ${category}" th:value="${category.id}"
+                                                        th:text="${category.name}"
+                                                        th:selected="${category.id==data.Room.Category.id}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Room</label>
+                                            <div class="">
+                                                <select class="form-control frm select2" id="roomId" name="roomId">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Price</label>
+                                            <input type="text" name="priceCategory" id="priceCategory"
+                                                class="form-control frm" placeholder="" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Name</label>
+                                            <input maxlength="30" type="text" name="name" id="name"
+                                                class="form-control frm" placeholder="" th:value="${data.name}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">NIK</label>
+                                            <input maxlength="30" type="text" name="nik" id="nik"
+                                                class="form-control frm" placeholder="" th:value="${data.nik}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Birth date</label>
+                                            <input maxlength="30" type="date" name="birthDate" id="birthDate"
+                                                class="form-control frm" placeholder="" th:value="${#dates.format(data.birthDate, 'yyyy-MM-dd')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">No Hp</label>
+                                            <input maxlength="15" type="text" name="noHp" id="noHp"
+                                                class="form-control frm" placeholder="" th:value="${data.noHp}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Number of person</label>
+                                            <input maxlength="3" type="number" name="numberOfPerson" id="numberOfPerson"
+                                                class="form-control frm" placeholder="" step="1" th:value="${data.numberOfPerson}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Number of children</label>
+                                            <input maxlength="3" type="number" name="numberOfChildren"
+                                                id="numberOfChildren" class="form-control frm" placeholder="" step="1" th:value="${data.numberOfChildren}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">From date</label>
+                                            <input maxlength="30" type="date" name="fromDate" id="fromDate"
+                                                class="form-control frm" placeholder="" th:value="${#dates.format(data.fromDate, 'yyyy-MM-dd')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">To date</label>
+                                            <input maxlength="30" type="date" name="toDate" id="toDate"
+                                                class="form-control frm" placeholder="" th:value="${#dates.format(data.toDate, 'yyyy-MM-dd')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label class="form-control-label">Total Price</label>
+                                            <input type="text" name="price" id="price" class="form-control frm"
+                                                placeholder="" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="container mt-4 mb-2">
+                                        <div class="border-top pl-1 pt-3 text-right">
+                                            <button type="submit" class="btn btn-secondary frm">SUBMIT</button>
+                                            <a href="/dashboard" class="btn btn-danger frm">CANCEL</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
+            var formatter = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
+            var priceCategoryTotal = 0
+            var priceTotal = 0
+            $(document).ready(function () {
+                $.validator.addMethod("minDate", function (value, element) {
+                    var curDate = new Date();
+                    curDate.setHours(0, 0, 0, 0)
+                    var inputDate = new Date(value);
+                    if (inputDate >= curDate) {
+                        return true;
+                    }
+                    return false;
+                }, "Min date today");
+                $('.select2').select2().on("change", function (e) {
+                    $(this).valid();
+                });
+                $('#roomId').select2({
+                    placeholder: "Please select a option"
+                }).on("change", function (e) {
+                    var data = $('#roomId').select2('data')[0]
+                    var price = typeof $(data.element).attr("price") !== "undefined" ? $(data.element).attr("price") : 0
+                    priceCategoryTotal = price
+                    $("#priceCategory").val(formatter.format(price))
+                    $("#priceCategory").trigger('change')
+                });
+                $('#category').select2({
+                    placeholder: "Please select a option"
+                }).on("change", function (e) {
+                    var data = $('#category').select2('data')[0]
+                    realoadRoom(data.id);
+                });
+                $("#priceCategory").change(function () {
+                    totalPrice()
+                })
+                $("#fromDate").change(function () {
+                    totalPrice()
+                })
+                $("#toDate").change(function () {
+                    totalPrice()
+                })
+                $("#form-update").validate({
+                    rules: {
+                        category: {
+                            required: true,
+                        },
+                        name: {
+                            required: true,
+                        },
+                        nik: {
+                            required: true,
+                        },
+                        roomId: {
+                            required: true,
+                        },
+                        birthDate: {
+                            required: true,
+                        },
+                        noHp: {
+                            required: true,
+                        },
+                        numberOfPerson: {
+                            required: true,
+                            min: 1,
+                            max: 100,
+                        },
+                        numberOfChildren: {
+                            required: true,
+                            min: 0,
+                            max: 100,
+                        },
+                        fromDate: {
+                            required: true,
+                            minDate: true,
+                        },
+                        toDate: {
+                            required: true,
+                            minDate: true,
+                        },
+                    },
+                    submitHandler: function (form, event) {
+                        var fromDate = new Date($("#fromDate").val());
+                        var toDate = new Date($("#toDate").val());
+                        if (toDate <= fromDate) {
+                            iziToast.warning({
+                                title: 'Warning',
+                                message: "To date must from date + 1 day",
+                                position: 'topRight'
+                            });
+                            return false
+                        }
+                        event.preventDefault();
+                        var dataForm = getFormData($("#form-update"))
+                        dataForm.price = priceTotal
+                        var data = JSON.stringify(dataForm)
+                        console.log(data);
+                        $.ajax({
+                            data: data,
+                            url: '/dashboard/do-update',
+                            type: "POST",
+                            contentType: "application/json",
+                            dataType: 'json',
+                            success: function (e) {
+                                swal.close();
+                                window.location.replace("/dashboard");
+                            },
+                            beforeSend: function () {
+                                showLoading();
+                            },
+                            error: function (e) {
+                                console.log(e)
+                                if (e.status == 400 && e.responseJSON.code == "400") {
+                                    e.responseJSON.message.map(function (ex) {
+                                        swal.close();
+                                        iziToast.warning({
+                                            title: 'Info',
+                                            message: ex,
+                                            position: 'topRight'
+                                        });
+                                    })
+                                } else {
+                                    swal.close();
+                                    iziToast.error({
+                                        title: 'Warning',
+                                        message: "Bad Request",
+                                        position: 'topRight'
+                                    });
+                                }
+                            }
+                        });
+                        return false;
+                    },
+                });
+                init()
+            })
+            function init(){
+                    /*<![CDATA[*/
+                        var roomID = [[${data.Room.id}]];
+                    /*]]>*/
+                    var data = $('#category').select2('data')[0]
+                    realoadRoom(data.id,true,roomID);
+                }
+            function getFormData($form) {
+                var unindexed_array = $form.serializeArray();
+                var indexed_array = {};
+
+                $.map(unindexed_array, function (n, i) {
+                    indexed_array[n['name']] = n['value'];
+                });
+
+                return indexed_array;
+            }
+            function realoadRoom(room, init = false, value = "") {
+                var option = $("#roomId")
+                $.ajax({
+                    url: '/room/get-by-category?idCategory=' + room,
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (e) {
+                        option.empty()
+                        option.append("<option value=''>" + "" + "</option>");
+                        e.map(function (e) {
+                            option.append("<option price=\"" + e.category.price + "\" value=\"" + e.id + "\">" + e.name + "</option>");
+                        })
+                        if (!init) {
+                            option.val("").trigger("change");
+                        }else{
+                            option.val(value).trigger("change");
+                        }
+                    },
+                    beforeSend: function () {
+                        var loading = $('<option selected>Loading...</option>').val("");
+                        option.append(loading);
+                    },
+                    error: function (e) {
+                        swal.close();
+                        iziToast.error({
+                            title: 'Warning',
+                            message: "Bad Request",
+                            position: 'topRight'
+                        });
+                    }
+                });
+            }
+            function totalPrice() {
+                var fromDate = new Date($("#fromDate").val());
+                var toDate = new Date($("#toDate").val());
+                var days = diffDays(fromDate, toDate)
+                priceTotal = (days * priceCategoryTotal);
+                if (isNaN(priceTotal)) {
+                    priceTotal = 0
+                }
+                $("#price").val(formatter.format(priceTotal))
+            }
+        </script>
+    </div>
+</body>
+
+</html>

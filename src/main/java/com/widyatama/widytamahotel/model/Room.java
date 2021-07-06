@@ -48,11 +48,11 @@ public class Room extends AuditModel {
 	@ManyToOne(optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private CategoryRoom Category;
+    private CategoryRoom category;
 	public CategoryRoom getCategory() {
-		return Category;
+		return category;
 	}
 	public void setCategory(CategoryRoom category) {
-		Category = category;
+		this.category = category;
 	}
 }

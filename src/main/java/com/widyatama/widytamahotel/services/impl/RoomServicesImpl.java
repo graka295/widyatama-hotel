@@ -69,4 +69,11 @@ public class RoomServicesImpl implements RoomServices{
 		roomRespository.deleteById(Long.valueOf(id));
 	}
 
+	@Override
+	public List<Room> findByCategory(Integer category) {
+		CategoryRoom resCategory = new CategoryRoom();
+		resCategory.setId(Long.valueOf(category));
+		return roomRespository.findByCategory(resCategory);
+	}
+
 }

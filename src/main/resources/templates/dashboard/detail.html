@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeLeaf/Layout"
+    xmlns:th="http://www.ultraq.net.nz/thymeLeaf.org" layout:decorate="~{shared/main_layout.html}">
+
+<body>
+    <div layout:fragment="content">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center header-table">
+                    <h4 class="page-title">MANAGE RESERVATION</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Detail</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="ecommerce-widget">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-right">
+                                    <b>DETAIL</b>
+                                </div>
+                            </div>
+                            <div class="card-body order-datatable">
+                                <div class="col-md-12">
+                                    <div class="profile-head">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Name</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.name}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>NIK</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.nik}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Birth date</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${#dates.format(data.birthDate, 'dd-MM-yyyy')}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>No Hp</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.noHp}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Number of person</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.numberOfPerson}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Number of children</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.numberOfChildren}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Arrival Date</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${#dates.format(data.fromDate, 'dd-MM-yyyy')}+' - '+${#dates.format(data.toDate, 'dd-MM-yyyy')}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Total Price</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="'Rp. '+ ${#numbers.formatDecimal(data.price, 0, 'COMMA', 2, 'POINT')}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Category</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.room.category.name}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Room</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.room.name}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="container mt-4">
+                                            <div class="border-top pl-1 pt-3 text-right">
+                                                <a href="/room" class="btn btn-danger frm">BACK</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        </script>
+    </div>
+</body>
+
+</html>

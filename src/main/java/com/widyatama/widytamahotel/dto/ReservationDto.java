@@ -81,6 +81,12 @@ public class ReservationDto {
 		public void setToDate(Date toDate) {
 			this.toDate = toDate;
 		}
+		public Double getPrice() {
+			return price;
+		}
+		public void setPrice(Double price) {
+			this.price = price;
+		}
 		private Long id;
 		private Long roomId;
 		private String name;
@@ -91,5 +97,6 @@ public class ReservationDto {
 		private Integer numberOfChildren;
 		private Date fromDate;
 		private Date toDate;
+		private Double price;
 	}
 }

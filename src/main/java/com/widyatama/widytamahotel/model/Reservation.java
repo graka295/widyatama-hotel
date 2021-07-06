@@ -82,6 +82,12 @@ public class Reservation extends AuditModel {
 	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -105,4 +111,6 @@ public class Reservation extends AuditModel {
 	private Date fromDate;
 	@Column(name = "to_data",nullable = false)
 	private Date toDate;
+	@Column(name = "price",nullable = false)
+	private double price;
 }

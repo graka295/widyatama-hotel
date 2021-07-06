@@ -30,6 +30,7 @@ public class ReservationServicesImpl implements ReservationServices {
 		reservation.setNumberOfPerson(data.getNumberOfPerson());
 		reservation.setFromDate(data.getFromDate());
 		reservation.setToDate(data.getToDate());
+		reservation.setPrice(data.getPrice());
 		Room resCategory = new Room();
 		resCategory.setId(data.getRoomId());
 		reservation.setRoom(resCategory);
@@ -42,7 +43,7 @@ public class ReservationServicesImpl implements ReservationServices {
 		 Reservation res = new Reservation();
 		 Room resCategory = new Room();
 		 resCategory.setId(roomID);
-		 Optional<Reservation> reservation = reservationRespository.findByRoomAndFromDateBetweenOrToDateBetween( resCategory,  from,  to,  from2,  to2);
+		 Optional<Reservation> reservation = reservationRespository.findTopByRoomAndFromDateBetweenOrToDateBetween( resCategory,  from,  to,  from2,  to2);
 		 reservation.ifPresentOrElse((data) -> {
 				res.setId(data.getId());
 				res.setFromDate(data.getFromDate());
@@ -52,6 +53,28 @@ public class ReservationServicesImpl implements ReservationServices {
 				res.setId((long) 0);
 			});
 		 return res;
+	}
+
+	@Override
+	public Reservation FindByID(Integer id) {
+		Reservation res = new Reservation();
+		Optional<Reservation> category = reservationRespository.findById(Long.valueOf(id));
+		category.ifPresentOrElse((data) -> {
+			res.setRoom(data.getRoom());
+			res.setId(data.getId());
+			res.setName(data.getName());
+			res.setNoHp(data.getNoHp());
+			res.setNik(data.getNik());
+			res.setBirthDate(data.getBirthDate());
+			res.setNumberOfChildren(data.getNumberOfChildren());
+			res.setNumberOfPerson(data.getNumberOfPerson());
+			res.setFromDate(data.getFromDate());
+			res.setToDate(data.getToDate());
+			res.setPrice(data.getPrice());
+		}, () -> {
+			res.setId((long) 0);
+		});
+		return res;
 	}
 
 }
