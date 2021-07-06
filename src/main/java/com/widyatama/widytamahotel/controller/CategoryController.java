@@ -121,4 +121,14 @@ public class CategoryController {
 		CategoryRoom data = categoryServices.Create(reqForm);
 		return ResponseEntity.ok().body(res);
 	}
+	
+	@GetMapping("/delete")
+	public String Delete(Model model,HttpSession session,@RequestParam Integer idData) {
+		String id = (String) session.getAttribute("id");
+		if (id == null) {
+			return ("redirect:/auth/logout");
+		}
+		categoryServices.DeleteByID(idData);
+		return "redirect:/category";
+	}
 }

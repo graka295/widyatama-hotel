@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeLeaf/Layout"
+    xmlns:th="http://www.ultraq.net.nz/thymeLeaf.org" layout:decorate="~{shared/main_layout.html}">
+
+<body>
+    <div layout:fragment="content">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center header-table">
+                    <h4 class="page-title">MANAGE CATEGORY</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Category</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="ecommerce-widget">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-right">
+                                    <a href="/category/create" class="btn btn-secondary">CREATE</a>
+                                </div>
+                            </div>
+                            <div class="card-body order-datatable">
+                                <table id="dataTable" class="dataTable table table-striped table-bordered"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="data : ${data}">
+                                            <td th:text="${data.name}"></td>
+                                            <td th:text="${#numbers.formatDecimal(data.price, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td>
+                                                <div class="text-center">
+                                                    <div class="btn-group">
+                                                        <a th:href="@{'/category/detail?idData='+${data.id}}"
+                                                            class="editor_edit btn btn-success"><i
+                                                                class="fa fa-eye text-white"></i></a>
+                                                        <a th:href="@{'/category/update?idData='+${data.id}}"
+                                                            class="editor_edit btn btn-warning"><i
+                                                                class="fa fa-edit text-white"></i></a>
+                                                        <div th:onclick="|onDelete('${data.id}')|"
+                                                            class="editor_edit btn btn-danger"><i
+                                                                class="fa fa-trash text-white"></i></div>
+                                                    </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var grid;
+            $(document).ready(function () {
+                grid = $('#dataTable').DataTable({
+                    columnDefs: [{ orderable: false, targets: [2] },]
+                });
+            })
+            function onDelete(id) {
+                deleteData('/category/delete?idData='+id)
+            }
+        </script>
+    </div>
+</body>
+
+</html>
