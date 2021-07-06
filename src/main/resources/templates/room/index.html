@@ -47,10 +47,10 @@
                                             <td>
                                                 <div class="text-center">
                                                     <div class="btn-group">
-                                                        <a th:href="@{'room/detail?idData='+${data.id}}"
+                                                        <a th:href="@{'/room/detail?idData='+${data.id}}"
                                                             class="editor_edit btn btn-success"><i
                                                                 class="fa fa-eye text-white"></i></a>
-                                                        <a th:href="@{'room/update?idData='+${data.id}}"
+                                                        <a th:href="@{'/room/update?idData='+${data.id}}"
                                                             class="editor_edit btn btn-warning"><i
                                                                 class="fa fa-edit text-white"></i></a>
                                                         <div th:onclick="|onDelete('${data.id}')|"
@@ -75,7 +75,7 @@
                 });
             })
             function onDelete(id) {
-                deleteData('room/delete?idData='+id)
+                deleteData('/room/delete?idData='+id)
             }
         </script>
     </div>
