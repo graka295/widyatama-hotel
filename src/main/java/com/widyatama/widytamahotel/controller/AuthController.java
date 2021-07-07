@@ -22,16 +22,20 @@ import org.springframework.http.MediaType;
 import com.widyatama.widytamahotel.dto.LoginDto.ReqForm;
 import com.widyatama.widytamahotel.dto.LoginDto.ResBadRequest;
 import com.widyatama.widytamahotel.dto.LoginDto.ResSuccessDto;
+import com.widyatama.widytamahotel.model.Users;
 import com.widyatama.widytamahotel.services.AuthServices;
+import com.widyatama.widytamahotel.services.impl.UserServicesImpl;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
 
 	private final AuthServices authServices;
-	public AuthController(AuthServices authServices) {
+	private final UserServicesImpl userServicesImpl;
+	public AuthController(AuthServices authServices,UserServicesImpl userServicesImpl) {
 		super();
 		this.authServices = authServices;
+		this.userServicesImpl = userServicesImpl;
 	}
 
 	@GetMapping("/login")
@@ -72,5 +76,19 @@ public class AuthController {
 			res.setMessage(messages);
 			return ResponseEntity.badRequest().body(res);
 		}
+	}
+	
+	@GetMapping("/profile")
+	public String Profile(Model model,HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		if (id == null) {
+			return ("redirect:/auth/logout");
+		}
+		Users data = userServicesImpl.FindByID(Integer.parseInt(id));
+		if (data.getId() == 0) {
+			return ("redirect:/auth/logout");
+		}
+		model.addAttribute("data", data);
+		return "user/profile";
 	}
 }

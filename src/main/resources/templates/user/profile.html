@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeLeaf/Layout"
+    xmlns:th="http://www.ultraq.net.nz/thymeLeaf.org" layout:decorate="~{shared/main_layout.html}">
+
+<body>
+    <div layout:fragment="content">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center header-table">
+                    <h4 class="page-title">PROFILE</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Profile</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="ecommerce-widget">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-right">
+                                    <b th:text="'HI, '+${data.firstName}"></b>
+                                </div>
+                            </div>
+                            <div class="card-body order-datatable">
+                                <div class="col-md-12">
+                                    <div class="profile-head">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>First Name</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.firstName}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Last Name</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.lastName}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <b>Email</b>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-primary">
+                                                    <div th:text="${data.email}"></div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="container mt-4">
+                                            <div class="border-top pl-1 pt-3 text-right">
+                                            	<!-- <button class="btn btn-success frm">CHANGE PASSWORD</button> -->
+                                                <a href="/room" class="btn btn-danger frm">BACK</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        </script>
+    </div>
+</body>
